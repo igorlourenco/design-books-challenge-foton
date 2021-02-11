@@ -1,11 +1,12 @@
 import React from 'react'
-import { Heading } from '@chakra-ui/react'
+import { Stack } from '@chakra-ui/react'
+import Header from '../components/Header'
 
 const App = () => {
   return (
-      <Heading color='brand.900'>
-        Projeto-base Next.js | TypeScript | Chakra UI
-      </Heading>
+    <Stack backgroundColor='yellow.personal' minWidth={'100vw'} minHeight={'100vh'}>
+      <Header/>
+    </Stack>
   )
 }
 
