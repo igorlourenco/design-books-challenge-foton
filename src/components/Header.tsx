@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   Heading,
   Stack,
@@ -20,6 +20,12 @@ const Header = () => {
     onOpen,
     onClose
   } = useDisclosure()
+
+  const [searchWord, setSearchWord] = useState()
+
+  const handleChangeSearchWord = (event) => {
+    setSearchWord(event.target.value)
+  }
 
   return (
     <Stack
@@ -77,7 +83,7 @@ const Header = () => {
       </Heading>
 
       <Stack>
-        <Link display={{ md: !isOpen ? 'none' : 'inherit' }} href={'/buscar'}>
+        <Link display={{ md: !isOpen ? 'none' : 'inherit' }} href={`/buscar?search=${searchWord}`}>
           <Box size={32} as={AiOutlineSearch}/>
         </Link>
 
@@ -85,8 +91,10 @@ const Header = () => {
           base: 'none',
           md: 'flex'
         }} spacing={2} isInline alignItems="center">
-          <Input borderColor={'black'} placeholder={'Harry Potter...'}/>
-          <Box as={AiOutlineSearch} size={32}/>
+          <Input borderColor={'black'} placeholder={'Harry Potter...'} onChange={handleChangeSearchWord}/>
+          <Link display={{ md: !isOpen ? 'none' : 'inherit' }} href={`/buscar?search=${searchWord}`}>
+            <Box size={32} as={AiOutlineSearch}/>
+          </Link>
         </Stack>
       </Stack>
     </Stack>
