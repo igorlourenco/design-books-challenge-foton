@@ -1,2 +1,2 @@
-### Starter - NextJS TypeScript Chakra UI
-⚡ Template-base para aplicações React construídas com NextJS e TypeScript.
+### Design Books (Challenge Foton Tech)
+⚡ Project developed as a resolution to the challenge proposed by Foton Tech.
