@@ -6,8 +6,7 @@ import {
   Stack
 } from '@chakra-ui/react'
 
-import SearchHeader from './SearchHeader'
-import { AiOutlineSearch } from 'react-icons/ai'
+import { BiBook } from 'react-icons/bi'
 
 const Header = () => {
   return (
@@ -30,8 +29,8 @@ const Header = () => {
       </Heading>
 
       <Stack>
-        <Link display={['block', 'block', 'none', 'none']} href={'/search'}>
-          <Box size={32} as={AiOutlineSearch}/>
+        <Link href={'/search'}>
+          <Box size={32} as={BiBook}/>
         </Link>
       </Stack>
     </Stack>

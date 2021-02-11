@@ -3,6 +3,7 @@ import { Center, Stack, Image, Grid, Link, Heading } from '@chakra-ui/react'
 import Header from '../components/Header'
 import { useRouter } from 'next/router'
 import Search from '../components/Search'
+import Loading from '../components/Loading'
 
 const ListBooks = () => {
   const router = useRouter()
@@ -17,7 +18,7 @@ const ListBooks = () => {
   }, [search])
 
   if (!books) {
-    return (<h1>carregando</h1>)
+    return (<Loading/>)
   }
 
   if (!search) {
