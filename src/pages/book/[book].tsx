@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Box, Button, Divider, IconButton, Stack, Image, Text } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
-import { AiFillStar } from 'react-icons/ai'
+import { AiFillStar, AiOutlineStar } from 'react-icons/ai'
 import { BiHeart } from 'react-icons/bi'
 import Loading from '../../components/Loading'
 
@@ -9,6 +9,11 @@ const Book = () => {
   const router = useRouter()
   const { book } = router.query
   const [likes, setLikes] = useState(158)
+  const [note, setNote] = useState(0)
+  const notes = [3, 5, 4.5, 4.8, 5, 3.4]
+  const notesReducer = (accumulator, currentValue) => accumulator + currentValue
+  const [rate, setRate] = useState(notes.reduce(notesReducer) / notes.length)
+  const [ratedBook, setRatedBook] = useState(false)
   const [myBook, setMyBook] = useState(null)
   const [isLiked, setIsLiked] = useState(false)
   const [isFavorite, setIsFavorite] = useState(false)
@@ -16,7 +21,6 @@ const Book = () => {
   useEffect(() => {
     fetch(`https://www.googleapis.com/books/v1/volumes/${book}`).then(async (response) => {
       const data = await response.json()
-      console.log(data)
       setMyBook(data)
     })
   }, [book])
@@ -30,6 +34,21 @@ const Book = () => {
     setIsFavorite(!isFavorite)
   }
 
+  const handleUpdateNotes = (userNote) => {
+    setNote(userNote)
+    if (!ratedBook) {
+      notes.push(userNote)
+      setRatedBook(true)
+    } else {
+      notes.pop()
+      notes.push(userNote)
+    }
+
+    setRate(notes.reduce(notesReducer) / notes.length)
+
+    console.log(notes, rate)
+  }
+
   return (
     myBook
       ? (
@@ -41,14 +60,15 @@ const Book = () => {
                 <Stack spacing={2}>
                   <Text fontWeight={'bold'} fontSize={'lg'}>{myBook.volumeInfo?.title}</Text>
                   <Text fontSize={'sm'} color={'gray.500'}>by {myBook.volumeInfo?.authors.map(author => author)}</Text>
-                  <Stack spacing={2} isInline>
+                  <Stack spacing={2} alignItems={'flex-start'}>
                     <Text> {myBook?.saleInfo?.retailPrice ? `R$ ${myBook.saleInfo.retailPrice.amount}` : 'price not informed'}</Text>
-                    <Stack spacing={2} isInline>
-                      <Box as={AiFillStar}/>
-                      <Box as={AiFillStar}/>
-                      <Box as={AiFillStar}/>
-                      <Box as={AiFillStar}/>
-                      <Box as={AiFillStar}/>
+                    <Stack alignItems={'center'}>
+                      <Stack spacing={2} isInline>
+                        {
+                          [1, 2, 3, 4, 5].map(userNote => (<Box key={userNote} as={userNote <= note ? AiFillStar : AiOutlineStar} onClick={() => handleUpdateNotes(userNote)}/>))
+                        }
+                      </Stack>
+                      <Text>{rate.toFixed(2)}</Text>
                     </Stack>
                   </Stack>
                   <Divider/>
