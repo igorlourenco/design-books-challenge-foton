@@ -11,7 +11,7 @@ const Search = () => {
 
   return (
     <Stack spacing={4} justifyContent="center" alignItems="center" width={['95%', '80%', '80%', '60%']}>
-      <Input placeholder="Search..." focusBorderColor={'yellow.400'} borderColor={'black'} onChange={handleChangeSearchWord}/>
+      <Input focusBorderColor={'yellow.400'} borderColor={'black'} onChange={handleChangeSearchWord}/>
       <Button as={'a'} href={`/search?search=${searchWord}`} leftIcon={<Box as={BiBook}/>} variant="outline"
               backgroundColor={'yellow.personal'}
               borderColor={'black'} size="md" _hover={{
