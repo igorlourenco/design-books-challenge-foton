@@ -1,17 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Box, Stack, Input, Button } from '@chakra-ui/react'
 import { BiBook } from 'react-icons/bi'
-import { useRouter } from 'next/router'
 
 const Search = () => {
-  const searchWordRef = useRef()
+  const searchWordRef = useRef(null)
 
   const [searchWord, setSearchWord] = useState('')
 
   const searchOnEnter = (event: KeyboardEvent) => {
     if (event.keyCode === 13) {
       event.preventDefault()
-      searchWordRef.current.click()
+      searchWordRef?.current.click()
     }
   }
 
