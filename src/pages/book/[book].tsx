@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai'
 import { BiHeart } from 'react-icons/bi'
 import Loading from '../../components/Loading'
+import Header from '../../components/Header'
 
 const Book = () => {
   // get book id
@@ -62,7 +63,8 @@ const Book = () => {
   return (
     myBook
       ? (
-        <Stack>
+        <Stack spacing={0}>
+          <Header isBookPage={true}/>
           <Stack padding={[4, 4, 12, 12]} backgroundColor={'yellow.personal'}>
             <Stack width={['95vw', '80vw', '70vw', '70vw']}>
               <Stack isInline spacing={8} justifyContent={'center'}>
