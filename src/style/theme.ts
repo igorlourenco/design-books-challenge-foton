@@ -7,8 +7,8 @@ const colors = {
 }
 
 const fonts = {
-  heading: '\'Raleway\', sans-serif',
-  body: '\'Raleway\', sans-serif',
+  heading: '\'Proxima Nova\', sans-serif',
+  body: '\'Proxima Nova\', sans-serif',
   mono: '\'Menlo\', monospace'
 }
 
