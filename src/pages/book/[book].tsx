@@ -69,14 +69,14 @@ const Book = () => {
             <Stack width={['95vw', '80vw', '70vw', '70vw']}>
               <Stack isInline spacing={8} justifyContent={'center'}>
                 <Stack alignItems={'center'}>
-                  <Image src={myBook.volumeInfo?.imageLinks.thumbnail} height="auto" width="auto" shadow={'2xl'}/>
+                  <Image src={myBook?.volumeInfo?.imageLinks.thumbnail} height="auto" width="auto" shadow={'2xl'}/>
                   <Text fontWeight={'bold'}>{myBook?.volumeInfo?.pageCount} pages</Text>
                 </Stack>
                 <Stack spacing={2}>
-                  <Text fontWeight={'bold'} fontSize={'lg'}>{myBook.volumeInfo?.title}</Text>
-                  <Text fontSize={'sm'} color={'gray.500'}>by {myBook.volumeInfo?.authors.join(', ')} </Text>
+                  <Text fontWeight={'bold'} fontSize={'lg'}>{myBook?.volumeInfo?.title}</Text>
+                  <Text fontSize={'sm'} color={'gray.500'}>by {myBook?.volumeInfo?.authors?.join(', ')} </Text>
                   <Stack spacing={2} alignItems={'flex-start'}>
-                    <Text> {myBook?.saleInfo?.retailPrice ? `R$ ${myBook.saleInfo.retailPrice.amount}` : 'price not informed'}</Text>
+                    <Text> {myBook?.saleInfo?.retailPrice ? `R$ ${myBook?.saleInfo.retailPrice.amount}` : 'price not informed'}</Text>
                     <Stack alignItems={'center'}>
                       <Stack spacing={2} isInline>
                         {

@@ -33,45 +33,45 @@ const ListBooks = () => {
 
   if (!search) {
     return (
-        <Stack backgroundColor='yellow.personal' minHeight={'100vh'}>
-          <Stack justifyContent="center" alignItems="center" height={'80vh'} spacing={8}>
-            <Heading width={['95%', '80%', '70%', '50%']} textAlign={'center'}>
-              Find, save and buy books on the biggest database ever!
-            </Heading>
-            <Search/>
-          </Stack>
+      <Stack backgroundColor='yellow.personal' minHeight={'100vh'}>
+        <Stack justifyContent="center" alignItems="center" height={'80vh'} spacing={8}>
+          <Heading width={['95%', '80%', '70%', '50%']} textAlign={'center'}>
+            Find, save and buy books on the biggest database ever!
+          </Heading>
+          <Search/>
         </Stack>
+      </Stack>
     )
   }
 
   return (
-      <Stack backgroundColor='yellow.personal' minHeight={'100vh'}>
-        <Header/>
-        <Stack spacing={8} justifyContent="center" alignItems="center" paddingY={5}>
-          <Search/>
-          <Text>You searched for: <Text as={'span'} fontWeight={'bold'}>{search}</Text></Text>
-          <Grid paddingTop={10} gap={4} maxWidth={'1024px'} width={'98vw'}
-                templateColumns="repeat(auto-fit, minmax(180px, 1fr))">
-            {books && books.map((book, index) => {
-              return (
+    <Stack backgroundColor='yellow.personal' minHeight={'100vh'}>
+      <Header/>
+      <Stack spacing={8} justifyContent="center" alignItems="center" paddingY={5}>
+        <Search/>
+        <Text>You searched for: <Text as={'span'} fontWeight={'bold'}>{search}</Text></Text>
+        <Grid paddingTop={10} gap={4} maxWidth={'1024px'} width={'98vw'}
+              templateColumns="repeat(auto-fit, minmax(180px, 1fr))">
+          {books && books.map((book, index) => {
+            return (
               // book component
-                  <Center key={`${book.id}-${index}`}>
-                    <Link href={`/book/${book.id}`}>
-                      <Image width={'auto'} height={'auto'}
-                             src={book.volumeInfo.imageLinks?.thumbnail ?? imagePlaceholder}/>
-                    </Link>
-                  </Center>
-              )
-            })}
-          </Grid>
-          <Button onClick={loadMore} backgroundColor={'yellow.300'} variant={'ghost'} borderColor={'black'} size="md"
-                  _hover={{
-                    backgroundColor: 'yellow.300'
-                  }}>
-            Load more books
-          </Button>
-        </Stack>
+              <Center key={`${book?.id}-${index}`}>
+                <Link href={`/book/${book?.id}`}>
+                  <Image width={'auto'} height={'auto'}
+                         src={book?.volumeInfo.imageLinks?.thumbnail ?? imagePlaceholder}/>
+                </Link>
+              </Center>
+            )
+          })}
+        </Grid>
+        <Button onClick={loadMore} backgroundColor={'yellow.300'} variant={'ghost'} borderColor={'black'} size="md"
+                _hover={{
+                  backgroundColor: 'yellow.300'
+                }}>
+          Load more books
+        </Button>
       </Stack>
+    </Stack>
   )
 }
 
