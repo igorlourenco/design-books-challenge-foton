@@ -54,6 +54,7 @@ const ListBooks = () => {
                 templateColumns="repeat(auto-fit, minmax(180px, 1fr))">
             {books && books.map((book, index) => {
               return (
+              // book component
                   <Center key={`${book.id}-${index}`}>
                     <Link href={`/book/${book.id}`}>
                       <Image width={'auto'} height={'auto'}
