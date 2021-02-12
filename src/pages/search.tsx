@@ -55,7 +55,7 @@ const ListBooks = () => {
             {books && books.map((book, index) => {
               return (
                   <Center key={`${book.id}-${index}`}>
-                    <Link href={'/'}>
+                    <Link href={`/book/${book.id}`}>
                       <Image width={'auto'} height={'auto'}
                              src={book.volumeInfo.imageLinks?.thumbnail ?? imagePlaceholder}/>
                     </Link>
