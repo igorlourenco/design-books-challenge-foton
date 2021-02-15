@@ -24,13 +24,28 @@ const Search = () => {
   }
 
   return (
-    <Stack spacing={4} justifyContent="center" alignItems="center" width={['95%', '80%', '80%', '60%']}>
-      <Input focusBorderColor={'yellow.400'} borderColor={'black'} onChange={handleChangeSearchWord}/>
-      <Button ref={searchWordRef} as={'a'} href={`/search?search=${searchWord}`} leftIcon={<Box as={BiBook}/>} variant="outline"
-              backgroundColor={'yellow.personal'}
-              borderColor={'black'} size="md" _hover={{
-                backgroundColor: 'yellow.300'
-              }}>
+    <Stack
+      spacing={4}
+      justifyContent="center"
+      alignItems="center"
+      width={['95%', '80%', '80%', '60%']}>
+      <Input
+        focusBorderColor={'yellow.400'}
+        borderColor={'black'}
+        onChange={handleChangeSearchWord}
+      />
+      <Button
+        ref={searchWordRef}
+        as={'a'}
+        href={`/search?search=${searchWord}`}
+        leftIcon={<Box as={BiBook} />}
+        variant="outline"
+        backgroundColor={'yellow.personal'}
+        borderColor={'black'}
+        size="md"
+        _hover={{
+          backgroundColor: 'yellow.300'
+        }}>
         Find books
       </Button>
     </Stack>

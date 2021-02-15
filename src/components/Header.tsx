@@ -1,15 +1,10 @@
 import React from 'react'
-import {
-  Box,
-  Heading,
-  Link,
-  Stack, StackProps
-} from '@chakra-ui/react'
+import { Box, Heading, Link, Stack, StackProps } from '@chakra-ui/react'
 
 import { BiBook } from 'react-icons/bi'
 import { HiOutlineSearch } from 'react-icons/hi'
 
-interface HeaderProps extends StackProps{
+interface HeaderProps extends StackProps {
   isBookPage?: boolean
 }
 
@@ -23,21 +18,19 @@ const Header = (props: HeaderProps) => {
       backgroundColor={'yellow.personal'}
       alignItems="center"
       justifyContent="space-between"
-      {...props}
-    >
+      {...props}>
       <Heading
         display="flex"
         justifyContent="center"
         alignItems="center"
         size={'lg'}
-        fontWeight="medium"
-      >
+        fontWeight="medium">
         Design Books
       </Heading>
 
       <Stack>
         <Link href={'/search'}>
-          <Box size={32} as={props.isBookPage ? HiOutlineSearch : BiBook}/>
+          <Box size={32} as={props.isBookPage ? HiOutlineSearch : BiBook} />
         </Link>
       </Stack>
     </Stack>

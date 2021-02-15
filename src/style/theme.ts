@@ -7,9 +7,9 @@ const colors = {
 }
 
 const fonts = {
-  heading: '\'Proxima Nova\', sans-serif',
-  body: '\'Proxima Nova\', sans-serif',
-  mono: '\'Menlo\', monospace'
+  heading: "'Proxima Nova', sans-serif",
+  body: "'Proxima Nova', sans-serif",
+  mono: "'Menlo', monospace"
 }
 
 const theme = extendTheme({ colors, fonts })
