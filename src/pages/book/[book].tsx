@@ -39,12 +39,15 @@ const Book = () => {
 
   useEffect(() => {
     // get book by id and set to 'myBook' state
-    fetch(`https://www.googleapis.com/books/v1/volumes/${book}`).then(
-      async (response) => {
-        const data = await response.json()
-        setMyBook(data)
-      }
-    )
+    async function findBook() {
+      const response = await fetch(
+        `https://www.googleapis.com/books/v1/volumes/${book}`
+      )
+      const data = await response.json()
+      setMyBook(data)
+    }
+
+    findBook()
   }, [book])
 
   const handleUpdateLike = () => {
