@@ -111,6 +111,9 @@ const Book = () => {
                     {[1, 2, 3, 4, 5].map((userNote) => (
                       <Box
                         key={userNote}
+                        _hover={{
+                          cursor: 'pointer'
+                        }}
                         as={userNote <= note ? AiFillStar : AiOutlineStar}
                         onClick={() => handleUpdateNotes(userNote)}
                       />
