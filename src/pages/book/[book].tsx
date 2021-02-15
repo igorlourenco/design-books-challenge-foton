@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import {
   Box,
   Button,
@@ -24,11 +24,7 @@ const Book = () => {
 
   // set default notes and sum all of them
   const [note, setNote] = useState(0) // note from current user
-  const notes = [3, 5, 4.5, 4.8, 5, 3.4] // "from another users"
-  const notesReducer = (accumulator, currentValue) => accumulator + currentValue // reducer that will sum all notes
-
-  const [rate, setRate] = useState(notes.reduce(notesReducer) / notes.length) // average note
-  const [ratedBook, setRatedBook] = useState(false) // informs if user has already given a note
+  const notes = [5, 5, 5] // "from another users"
 
   // book is null before searching the API
   const [myBook, setMyBook] = useState(null)
@@ -36,6 +32,8 @@ const Book = () => {
   // values that tell whether the book has been liked or added as a favorite
   const [isLiked, setIsLiked] = useState(false)
   const [isFavorite, setIsFavorite] = useState(false)
+
+  let ratedBook = false // informs if user has already given a note
 
   useEffect(() => {
     // get book by id and set to 'myBook' state
@@ -59,21 +57,24 @@ const Book = () => {
     setIsFavorite(!isFavorite)
   }
 
-  const handleUpdateNotes = (userNote) => {
-    setNote(userNote)
-    if (!ratedBook) {
-      // if user doesn't rates the book, append note
-      notes.push(userNote)
-      setRatedBook(true)
-    } else {
-      // just replaces the users last note with the current one
-      notes.pop()
-      notes.push(userNote)
+  const rate = useMemo(() => {
+    if (note > 0) {
+      if (!ratedBook) {
+        // if user doesn't rates the book, append note
+        notes.push(note)
+        ratedBook = true
+      } else {
+        // just replaces the users last note with the current one
+        notes.pop()
+        notes.push(note)
+      }
     }
 
-    // calculate new rating
-    setRate(notes.reduce(notesReducer) / notes.length)
-  }
+    const notesReducer = (accumulator, currentValue) =>
+      accumulator + currentValue // reducer that will sum all notes
+
+    return notes.reduce(notesReducer) / notes.length
+  }, [notes]) // average note
 
   return myBook ? (
     <Stack spacing={0}>
@@ -115,7 +116,7 @@ const Book = () => {
                           cursor: 'pointer'
                         }}
                         as={userNote <= note ? AiFillStar : AiOutlineStar}
-                        onClick={() => handleUpdateNotes(userNote)}
+                        onClick={() => setNote(userNote)}
                       />
                     ))}
                   </Stack>
