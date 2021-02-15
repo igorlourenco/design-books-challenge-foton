@@ -21,7 +21,6 @@ const ListBooks = () => {
   const [startIndex, setStartIndex] = useState(0)
   const imagePlaceholder =
     'https://via.placeholder.com/120x173?text=Livro+sem+Capa'
-  let booksToAppend = []
   const booksPerPage = 30
 
   const loadMore = () => {
@@ -34,8 +33,7 @@ const ListBooks = () => {
       `https://www.googleapis.com/books/v1/volumes?q=${search}&startIndex=${startIndex}&maxResults=${booksPerPage}`
     ).then(async (response) => {
       const data = await response.json()
-      booksToAppend = booksToAppend.concat(books, data.items)
-      setBooks(booksToAppend)
+      setBooks(books.concat(data.items))
     })
   }, [search, startIndex])
 
